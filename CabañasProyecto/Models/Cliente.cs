@@ -20,7 +20,8 @@ namespace CabañasProyecto.Models
         [Required(ErrorMessage = "Debe ingresar una dirección ")]
         public string Direccion{ get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar un telefono")]
+        [Phone(ErrorMessage = "Formato de telefono incorrecto")]
         public string Telefono{ get; set; }
 
         [Required(ErrorMessage = "Debe ingresar un email")]

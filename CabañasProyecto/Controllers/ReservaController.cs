@@ -1,7 +1,9 @@
 ﻿using CabañasProyecto.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 
 namespace CabañasProyecto.Controllers
@@ -9,6 +11,7 @@ namespace CabañasProyecto.Controllers
 
     public class ReservaController : Controller
     {
+        CabaniasContext c = new();
         // Averiguar como poner un menu desplegable
         [HttpGet]
         public IActionResult Index()
@@ -26,16 +29,19 @@ namespace CabañasProyecto.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //(c.Cabanias, "Id", "Precio")
+            //ViewData["IdCabanias"] = new SelectList((from cabania in c.Cabanias.ToList() select new { idCab = cabania.Id, precio = cabania.Precio }), "IdCabania", "Precio");
+            //ViewData["IdCabanias"] = new SelectList(c.Cabanias, "Id", "Precio");
+            //ViewData["IdClientes"] = new SelectList(c.Clientes, "Id", "Nombre");
+            //ViewData["IdClientes"] = new SelectList((from cliente in c.Clientes.ToList() select new { idCli = cliente.Id, NombreCompleto = cliente.Nombre + " " + cliente.Apellido}), "IdCliente", "NombreCompleto");
             List<Cabania> reservas = new();
             List<Cliente> clientes = new();
-            using (CabaniasContext c = new())
-            {
-                reservas = c.Cabanias.Where(c => !c.Estado).ToList();
-                clientes = c.Clientes.ToList();
-                ViewBag.Cabanias = reservas;
-                ViewBag.Clientes = clientes;
-            }
-            return View();
+      
+            reservas = c.Cabanias.Where(c => !c.Estado).ToList();
+            clientes = c.Clientes.ToList();    
+            ViewBag.Cabanias = reservas;
+            ViewBag.Clientes = clientes;
+            return View();    
         }
        
         [HttpPost]
@@ -44,17 +50,21 @@ namespace CabañasProyecto.Controllers
             Cabania? cabania = null;
             using (CabaniasContext c = new CabaniasContext())
             {
-                //reserva.IdCabania = reserva.Id;
-                //reserva.Id = 0;
-                c.Reservas.Add(reserva);
-                cabania = c.Cabanias.Find(reserva.IdCabania);
-                if (cabania != null)
+                //reserva.IdCabania = IdCab;
+                //reserva.IdCliente = IdCli;
+                if (ModelState.IsValid)
                 {
-                    cabania.Estado = true;
-                    c.SaveChanges();
+                    c.Reservas.Add(reserva);
+                    cabania = c.Cabanias.Find(reserva.IdCabania);
+                    if (cabania != null)
+                    {
+                        cabania.Estado = true;
+                        c.SaveChanges();
+                        return RedirectToAction(nameof(Index));
+                    }
                 }
             }
-            return RedirectToAction(nameof(Index));
+            return View("Index");
         }
         [HttpGet]
         public IActionResult Edit(Reserva r)
@@ -94,6 +104,26 @@ namespace CabañasProyecto.Controllers
         }
         // Cuando eliminas la reserva hay q setear el estado en false de la cabaña
         [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            using (CabaniasContext context = new())
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
+                var reserva = context.Reservas.FirstOrDefault(e => e.Id == id);
+                //este metodo le enviamos una propiedad para que pueda realizar la busqueda y devolvernos la primer coincidencia
+                //Si no encuentra nada nos devuelve nulo y la asgina a especialidad
+                if (reserva == null)
+                {
+                    return NotFound();
+                }
+                return View(reserva);
+            }
+        }
+        [HttpPost]
         public IActionResult Delete(Reserva reserva)
         {
             Reserva? r = null;
@@ -106,7 +136,7 @@ namespace CabañasProyecto.Controllers
                     r = context.Reservas.Find(idR);
                     cabania = context.Cabanias.Find(r.IdCabania);
                     context.Reservas.Remove(r);
-                    if(cabania != null)
+                    if (cabania != null)
                     {
                         cabania.Estado = false;
                     }

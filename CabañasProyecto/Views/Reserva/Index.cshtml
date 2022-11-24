@@ -3,56 +3,64 @@
 @*Listar las Cabañas con el estado Reservado=True- Faltaría editar la info de las reservas. Estamos listando
     datos de las cabañas reservadas, pero no los datos de la reserva: id, fecha de inicio y fin.
 *@
+<h3>Reservas</h3>
 
-<h1>Reservas</h1>
-<a asp-action="Create">Crear nueva reserva</a>
-
-<table class="table">
-    <thead>
+<p>
+    <a asp-action="Create" class="btn-floating btn-large grey darken-1"> <i class="material-icons">note_add</i></a>
+</p>
+<table class="responsive-table highlight " z-depth-3" brown darken-2>
+    <thdead class="blue darken-1 white-text">
         <tr>
             <th>
-                <label>Id Reserva</label>
+                @Html.DisplayNameFor(c => c.Id)
             </th>
             <th>
-                <label>Fecha Inicio</label>
+                @Html.DisplayNameFor(c => c.FechaInicio)
             </th>
             <th>
-                <label>Fecha Fin</label>
+                @Html.DisplayNameFor(c => c.FechaFin)
             </th>
             <th>
-                <label>Id Cliente</label>
+                @Html.DisplayNameFor(c => c.IdCliente)
             </th>
             <th>
-                <label>Id Cabaña</label>
+                @Html.DisplayNameFor(c => c.IdCabania)
             </th>
-            <th>
+        </tr>
+    </thdead>
+    <tbody>
 
-            </th>
-        </tr>
-    </thead>
-    @foreach (var r in Model)
-    {
-        <tr>
-            <td>
-                <label>@r.Id</label>
-            </td>
-            <td>
-                <label>@r.FechaInicio</label>
-            </td>
-            <td>
-                <label>@r.FechaFin</label>
-            </td>
-            <td>
-                <label>@r.IdCliente</label>
-            </td>
-            <td>
-                <label>@r.IdCabania</label>
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-Id="@r.Id" class="btn btn-outline-primary">EDITAR</a>
-                <a asp-action="Delete" asp-route-Id="@r.Id" class="btn btn-outline-primary">ELIMINAR</a>
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(c => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => item.FechaFin)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(c => item.IdCliente)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(c => item.IdCabania)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="material-icons">edit</i></a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="material-icons red-text">delete</i></a>
+                </td>
+            </tr>
+
+        }
+
+
+    </tbody>
+
 
 </table>

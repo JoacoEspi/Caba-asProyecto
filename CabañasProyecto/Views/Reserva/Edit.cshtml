@@ -2,34 +2,42 @@
 
 <h1>EDITAR</h1>
 
-<form asp-action="Edit">
+<div class="row">
+    <div>
+        <form class="col s12" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="row">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="IdCabania" />
+                <input type="hidden" asp-for="IdCliente" />
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">event_note</i>
+                    <label asp-for="FechaInicio"></label>
+                    <input asp-for="FechaInicio" type="text" class="datepicker">
+                    <span asp-validation-for="FechaInicio"></span>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">event_note</i>
+                    <label asp-for="FechaFin"></label>
+                    <input asp-for="FechaFin" type="text" class="datepicker">
+                    <span asp-validation-for="FechaFin"></span>
+                </div>
 
-    <div class="form-group">
-        <label class="control-label">ID RESERVA</label>
-        <input asp-for="Id" class="form-control" />
+                <div class="row">
+                    <div class="col s6 m6">
+                        <button class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">
+                            Actualizar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                    <div class="col s6 m6">
+                        <a class="waves-effect waves-light btn gray darken-4" asp-action="Index"><i class="material-icons left">cloud</i>Volver</a>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label class="control-label">FECHA DE INICIO</label>
-        <input asp-for="FechaInicio" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">FECHA FIN</label>
-        <input asp-for="FechaFin" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label class="control-label">ID CABAÑA</label>
-        <input asp-for="IdCabania" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label class="control-label">ID CLIENTE</label>
-        <input asp-for="IdCliente" class="form-control" />
-    </div>
-
-
-    <div class="form-group" style="margin-top:10px;">
-        <input type="submit" value="MODIFICAR" class="btn btn-outline-dark" />
-    </div>
-
-
-</form>
+</div>
+<br>
+<br>
+<br>

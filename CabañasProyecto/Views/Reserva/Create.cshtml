@@ -1,36 +1,58 @@
 ﻿@model Reserva
 
-<h1>Agregar Reserva</h1>
-<form asp-action="Create">
-    <table class="table">
-        <div>
-            <label>FechaInicio</label>
-            <input asp-for="FechaInicio" />
-        </div>
-        <div>
-            <label>FechaFin</label>
-            <input asp-for="FechaFin" />
-        </div>
-        <div>
-            <label>IdCliente</label>
-            <select asp-for="IdCliente">
-                @foreach (var c in ViewBag.Clientes)
-                {
-                    <option>@c.Id</option>
-                }
-            </select>
-        </div>
-        <div>
-            <label>Cabañas</label>
-            <select asp-for="IdCabania">
-                @foreach (var c in ViewBag.Cabanias)
-                {
-                 <option>@c.Id</option>   
-                }
-            </select>
-        </div>
-        <div>
-            <input type="submit" value="Crear Reserva" />
-        </div>
-    </table>
-</form>
+<h3>Agregar Reserva</h3>
+
+<div class="row">
+    <div>
+        <form class="col s12" asp-action="Create">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">event_note</i>
+                <label asp-for="FechaInicio"></label>
+                <input  asp-for="FechaInicio" type="text" class="datepicker">
+                <span asp-validation-for="FechaInicio"></span>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">event_note</i>
+                <label asp-for="FechaFin"></label>
+                <input asp-for="FechaFin" type="text" class="datepicker">
+                <span asp-validation-for="FechaFin"></span>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">star_rate</i>
+                    <select asp-for="IdCabania">
+                        @foreach (var c in ViewBag.Cabanias)
+                        {
+                            <option>@c.Id</option>
+                        }
+                    </select>
+                    <label>Cabanias</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">star_rate</i>
+                    <select asp-for="IdCliente">
+                        @foreach (var c in ViewBag.Clientes)
+                        {
+                            <option>@c.Id</option>
+                        }
+                    </select>
+                    <label>Clientes</label>
+            </div>
+                <div class="row">
+                <div class="col s6 m6">
+                    <button class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">
+                        Grabar
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+                <div class="col s6 m6">
+                    <a class="waves-effect waves-light btn gray darken-4" asp-action="Index"><i class="material-icons left">cloud</i>Volver</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<br>
