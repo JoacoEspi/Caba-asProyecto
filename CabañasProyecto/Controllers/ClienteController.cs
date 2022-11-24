@@ -75,17 +75,36 @@ namespace CabañasProyecto.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Delete(Cliente cliente)
+        public IActionResult Delete(int? id)
         {
             using (CabaniasContext context = new())
             {
-                if (cliente != null)
+                if (id == null)
                 {
-                    context.Clientes.Remove(cliente);
-                    context.SaveChanges();
+                    return NotFound();
                 }
+
+                var cliente = context.Clientes.FirstOrDefault(e => e.Id == id);
+                //este metodo le enviamos una propiedad para que pueda realizar la busqueda y devolvernos la primer coincidencia
+                //Si no encuentra nada nos devuelve nulo y la asgina a especialidad
+                if (cliente == null)
+                {
+                    return NotFound();
+                }
+                return View(cliente);
             }
-            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            using (CabaniasContext context = new())
+            {
+                var cliente = context.Clientes.Find(id);
+                context.Clientes.Remove(cliente);
+                context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
         }
     }
+    
 }
