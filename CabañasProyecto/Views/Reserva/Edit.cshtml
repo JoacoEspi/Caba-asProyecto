@@ -1,0 +1,35 @@
+﻿@model Reserva
+
+<h1>EDITAR</h1>
+
+<form asp-action="Edit">
+
+    <div class="form-group">
+        <label class="control-label">ID RESERVA</label>
+        <input asp-for="Id" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">FECHA DE INICIO</label>
+        <input asp-for="FechaInicio" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">FECHA FIN</label>
+        <input asp-for="FechaFin" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">ID CABAÑA</label>
+        <input asp-for="IdCabania" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">ID CLIENTE</label>
+        <input asp-for="IdCliente" class="form-control" />
+    </div>
+
+
+    <div class="form-group" style="margin-top:10px;">
+        <input type="submit" value="MODIFICAR" class="btn btn-outline-dark" />
+    </div>
+
+
+</form>

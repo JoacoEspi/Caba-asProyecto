@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="row">
+    <div class="col s12 m4">
+        <div class="card">
+            <div class="card-image center orange">
+                <i class="material-icons large white-text">star_rate</i>
+                <a class="btn-floating halfway-fab waves-effect waves-light red" asp-controller="Cabania" asp-action="Create"><i class="material-icons">add</i></a>
+            </div>
+            <div class="card-content">
+                <span class="card-title">Cabañas:</span>
+                <p>Aqui se podran agregar Cabañas</p>
+            </div>
+            <div class="card-action blue-grey darken-3">
+                <a asp-controller="Cabania" asp-action="Index">Ver mas</a>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="card">
+            <div class="card-image center blue darken-1">
+                <i class="material-icons large white-text">face</i>
+                <a class="btn-floating halfway-fab waves-effect waves-light red" asp-controller="Cliente" asp-action="Create"><i class="material-icons">add</i></a>
+            </div>
+            <div class="card-content">
+                <span class="card-title">Clientes:</span>
+                <p>Aqui se podran agregar Clientes</p>
+            </div>
+            <div class="card-action blue-grey darken-3">
+                <a asp-controller="Cliente" asp-action="Index">Ver mas</a>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="card">
+            <div class="card-image center green accent-4">
+                <i class="material-icons large white-text">assignment_ind</i>
+                <a class="btn-floating halfway-fab waves-effect waves-light red" asp-controller="Reserva" asp-action="Create"><i class="material-icons">add</i></a>
+            </div>
+            <div class="card-content">
+                <span class="card-title">Reservas:</span>
+                <p>Aqui se podran agregar Reservas</p>
+            </div>
+            <div class="card-action blue-grey darken-3">
+                <a asp-controller="Reserva" asp-action="Index">Ver mas</a>
+            </div>
+        </div>
+    </div>
+</div>

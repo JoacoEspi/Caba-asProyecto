@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Reserva>
+
+@*Listar las Cabañas con el estado Reservado=True- Faltaría editar la info de las reservas. Estamos listando
+    datos de las cabañas reservadas, pero no los datos de la reserva: id, fecha de inicio y fin.
+*@
+
+<h1>Reservas</h1>
+<a asp-action="Create">Crear nueva reserva</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Id Reserva</label>
+            </th>
+            <th>
+                <label>Fecha Inicio</label>
+            </th>
+            <th>
+                <label>Fecha Fin</label>
+            </th>
+            <th>
+                <label>Id Cliente</label>
+            </th>
+            <th>
+                <label>Id Cabaña</label>
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    @foreach (var r in Model)
+    {
+        <tr>
+            <td>
+                <label>@r.Id</label>
+            </td>
+            <td>
+                <label>@r.FechaInicio</label>
+            </td>
+            <td>
+                <label>@r.FechaFin</label>
+            </td>
+            <td>
+                <label>@r.IdCliente</label>
+            </td>
+            <td>
+                <label>@r.IdCabania</label>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-Id="@r.Id" class="btn btn-outline-primary">EDITAR</a>
+                <a asp-action="Delete" asp-route-Id="@r.Id" class="btn btn-outline-primary">ELIMINAR</a>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,36 @@
+﻿@model Reserva
+
+<h1>Agregar Reserva</h1>
+<form asp-action="Create">
+    <table class="table">
+        <div>
+            <label>FechaInicio</label>
+            <input asp-for="FechaInicio" />
+        </div>
+        <div>
+            <label>FechaFin</label>
+            <input asp-for="FechaFin" />
+        </div>
+        <div>
+            <label>IdCliente</label>
+            <select asp-for="IdCliente">
+                @foreach (var c in ViewBag.Clientes)
+                {
+                    <option>@c.Id</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label>Cabañas</label>
+            <select asp-for="IdCabania">
+                @foreach (var c in ViewBag.Cabanias)
+                {
+                 <option>@c.Id</option>   
+                }
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Crear Reserva" />
+        </div>
+    </table>
+</form>

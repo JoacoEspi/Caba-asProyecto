@@ -1,0 +1,43 @@
+﻿@model Cabania
+
+<h1>EDITAR</h1>
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="input-field col s6">
+            <i class="material-icons prefix">monetization_on</i>
+            <input asp-for="Precio" type="text" class="validate">
+            <label asp-for="Precio"> </label>
+            <span asp-validation-for="Precio"></span>
+        </div>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">people</i>
+            <input asp-for="Capacidad" type="text" class="validate">
+            <label asp-for="Capacidad"> </label>
+            <span asp-validation-for="Capacidad"></span>
+        </div>
+        <div >
+            <label>
+                <input asp-for="Estado" type="checkbox" class="filled-in" checked="checked" />
+                <span asp-validation-for="Estado">¿Ocupada?</span>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6 m6">
+
+            <button class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">
+                Grabar
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+        <div>
+            <a class="waves-effect waves-light btn grey darken-4" asp-action="Index"><i class="material-icons left">undo</i>Volver</a>
+        </div>
+    </div>
+
+</form>

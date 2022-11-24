@@ -1,0 +1,27 @@
+Cosas a modificar
+
+Vista - Create y Edit - De Reserva ====> El select muestre solo los existentes
+
+Usar este codigo: 
+<div >
+<label ></label>
+<select name="IdEspecialidad"  asp-items="ViewBag.ListaEspecialidad"></select>
+</div>
+
+ViewData["ListaEspecialidad"] = new SelectList(context.Especialidades, "IdEspecialidad", "Descripcion");
+
+-------------------------------------------------------------------------------------------------------------
+
+Vista - Crear y Editar - De Reserva ====> Fecha no puede ser menor a la actual
+
+-------------------------------------------------------------------------------------------------------------
+
+Cabaña - No permitir que el estado se cambie al momento de crearla ni de editarla
+
+-------------------------------------------------------------------------------------------------------------
+
+Cliente y Cabaña ID ====> class="hidden"
+
+-------------------------------------------------------------------------------------------------------------
+
+Cliente - Vista para eliminarlo
