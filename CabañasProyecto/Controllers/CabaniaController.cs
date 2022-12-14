@@ -89,8 +89,6 @@ namespace CabañasProyecto.Controllers
                 }
 
                 var cabania = context.Cabanias.FirstOrDefault(e => e.Id == id);
-                //este metodo le enviamos una propiedad para que pueda realizar la busqueda y devolvernos la primer coincidencia
-                //Si no encuentra nada nos devuelve nulo y la asgina a especialidad
                 if (cabania == null)
                 {
                     return NotFound();
